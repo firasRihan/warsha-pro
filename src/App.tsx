@@ -31,6 +31,16 @@ import {
   Rocket,
   MapPin,
 } from "lucide-react";
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Cell,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
 
 /* ──────────── Scroll Reveal Hook ──────────── */
 function useReveal() {
@@ -89,6 +99,7 @@ function Navbar() {
     { label: "Opportunity", href: "#opportunity" },
     { label: "Product", href: "#product" },
     { label: "Business Model", href: "#business" },
+    { label: "Markets", href: "#markets" },
     { label: "Technology", href: "#technology" },
     { label: "Roadmap", href: "#roadmap" },
     { label: "Team", href: "#team" },
@@ -103,7 +114,7 @@ function Navbar() {
           <a href="#" className="flex items-center gap-3">
             <img src="/warsha_logo.png" alt="Warsha" className="h-10 w-10" />
             <span className="text-white font-bold text-xl tracking-wide">
-              WARSHA
+              WARSHA<span className="text-[#EF9F27]">PRO</span>
             </span>
           </a>
           <div className="hidden lg:flex items-center gap-1">
@@ -141,7 +152,7 @@ function Hero() {
               وَرشَة
             </h1>
             <h2 className="text-3xl lg:text-4xl font-bold text-white/90 mb-6 tracking-wide">
-              WARSHA
+              WARSHA<span className="text-[#EF9F27]">PRO</span>
             </h2>
             <p className="text-xl text-[#EF9F27] font-medium mb-4">
               The Arab World's First Arabic-Native Home Services Marketplace
@@ -324,7 +335,7 @@ function MarketOpportunity() {
                 },
                 {
                   num: "3",
-                  title: "Empty Playing Field",
+                  title: "Near-Empty Playing Field",
                   desc: "No Arabic-native home services platform",
                 },
                 {
@@ -707,6 +718,380 @@ function BusinessModel() {
   );
 }
 
+/* ──────────── Market Analysis with Charts ──────────── */
+const marketData = [
+  {
+    country: "Lebanon",
+    laborForce: 1.9,
+    internetPenetration: 92,
+    avgIncome: 10000,
+    opportunity: "Medium",
+  },
+  {
+    country: "Qatar",
+    laborForce: 2.12,
+    internetPenetration: 99,
+    avgIncome: 68000,
+    opportunity: "High",
+  },
+  {
+    country: "UAE",
+    laborForce: 5.8,
+    internetPenetration: 99,
+    avgIncome: 72000,
+    opportunity: "High",
+  },
+  {
+    country: "Saudi",
+    laborForce: 16.5,
+    internetPenetration: 96,
+    avgIncome: 32000,
+    opportunity: "Very High",
+  },
+  {
+    country: "Kuwait",
+    laborForce: 2.4,
+    internetPenetration: 99,
+    avgIncome: 52000,
+    opportunity: "Medium",
+  },
+  {
+    country: "Bahrain",
+    laborForce: 0.9,
+    internetPenetration: 99,
+    avgIncome: 28000,
+    opportunity: "Medium",
+  },
+  {
+    country: "Oman",
+    laborForce: 2.5,
+    internetPenetration: 95,
+    avgIncome: 22000,
+    opportunity: "Medium",
+  },
+  {
+    country: "Egypt",
+    laborForce: 31.0,
+    internetPenetration: 75,
+    avgIncome: 4500,
+    opportunity: "Very High",
+  },
+  {
+    country: "Jordan",
+    laborForce: 2.5,
+    internetPenetration: 80,
+    avgIncome: 6000,
+    opportunity: "Medium",
+  },
+];
+
+const COLORS = [
+  "#0F6E56",
+  "#EF9F27",
+  "#143D33",
+  "#6B8F84",
+  "#78909C",
+  "#546E7A",
+  "#37474F",
+  "#5D4037",
+];
+
+function MarketAnalysis() {
+  return (
+    <section id="markets" className="py-24 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <RevealSection>
+          <div className="text-center mb-16">
+            <Badge className="bg-[#0F6E56]/10 text-[#0F6E56] mb-4">
+              Market Analysis
+            </Badge>
+            <h2 className="text-4xl lg:text-5xl font-bold text-[#0A1F1A] mb-4">
+              Independent Market Projections
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Each market stands on its own.{" "}
+            </p>
+          </div>
+        </RevealSection>
+
+        {/* Qatar Highlight */}
+        {/* <RevealSection>
+          <div className="bg-gradient-to-r from-[#0A1F1A] to-[#143D33] rounded-2xl p-8 lg:p-12 mb-16">
+            <div className="flex flex-col lg:flex-row gap-8 items-center">
+              <div className="flex-1">
+                <Badge className="bg-[#EF9F27]/20 text-[#EF9F27] mb-4">
+                  <MapPin className="w-3 h-3 mr-1" /> Recommended Launch Market
+                </Badge>
+                <h3 className="text-3xl lg:text-4xl font-bold text-white mb-4">
+                  Why Qatar First?
+                </h3>
+                <p className="text-white/70 mb-6 leading-relaxed">
+                  Qatar combines the ideal conditions for a marketplace launch:
+                  near-universal internet penetration (99%), a young,
+                  digitally-active population of 2.7 million, and a labor force
+                  of 2.1 million that is 94% foreign-born — meaning a large
+                  community of skilled workers already in the country. The
+                  market is compact geographically, affluent, and critically{" "}
+                  <strong className="text-[#EF9F27]">
+                    underserved by digital home services platforms
+                  </strong>
+                  .
+                </p>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  {[
+                    { value: "3.1M", label: "Population" },
+                    { value: "2.1M", label: "Labor Force" },
+                    { value: "99%", label: "Internet" },
+                    { value: "2.7M", label: "Digital Users" },
+                  ].map((stat) => (
+                    <div
+                      key={stat.label}
+                      className="bg-white/10 rounded-lg p-4 text-center"
+                    >
+                      <div className="text-xl font-bold text-[#EF9F27]">
+                        {stat.value}
+                      </div>
+                      <div className="text-white/60 text-xs">{stat.label}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="w-full lg:w-auto">
+                <div className="bg-white rounded-xl p-6 max-w-sm">
+                  <h4 className="font-bold text-[#0A1F1A] mb-4">
+                    Qatar Market Snapshot
+                  </h4>
+                  <div className="space-y-3">
+                    <div className="flex justify-between text-sm">
+                      <span className="text-gray-500">
+                        Smartphone Penetration
+                      </span>
+                      <span className="font-semibold">95%+</span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span className="text-gray-500">Social Media Users</span>
+                      <span className="font-semibold">2.6M (95.2%)</span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span className="text-gray-500">Working Age (25-54)</span>
+                      <span className="font-semibold">2.18M (69.9%)</span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span className="text-gray-500">Mobile Connections</span>
+                      <span className="font-semibold">4.75M</span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span className="text-gray-500">Gov't Digital Push</span>
+                      <span className="font-semibold text-[#0F6E56]">
+                        Qatar Smart Nation
+                      </span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span className="text-gray-500">Avg. Mobile Speed</span>
+                      <span className="font-semibold">244 Mbps</span>
+                    </div>
+                  </div>
+                  <p className="text-xs text-gray-400 mt-4">
+                    Sources: World Bank 2024, DataReportal Digital 2024: Qatar,
+                    Global Media Insight
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </RevealSection> */}
+
+        {/* Labor Force Comparison Chart */}
+        <RevealSection>
+          <div className="bg-[#F8F7F5] rounded-2xl p-8 mb-16">
+            <h3 className="text-2xl font-bold text-[#0A1F1A] mb-2">
+              Labor Force by Market (Millions)
+            </h3>
+            <p className="text-gray-500 mb-6">
+              Total labor force — a proxy for both service providers and
+              potential customers
+            </p>
+            <div className="h-[350px] w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart
+                  data={marketData}
+                  margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
+                  <XAxis dataKey="country" tick={{ fill: "#666" }} />
+                  <YAxis tick={{ fill: "#666" }} />
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: "#fff",
+                      borderRadius: "8px",
+                      border: "none",
+                      boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+                    }}
+                  />
+                  <Bar dataKey="laborForce" radius={[4, 4, 0, 0]}>
+                    {marketData.map((entry, index) => (
+                      <Cell
+                        key={`cell-${index}`}
+                        fill={
+                          entry.country === "Qatar"
+                            ? "#EF9F27"
+                            : COLORS[index % COLORS.length]
+                        }
+                      />
+                    ))}
+                  </Bar>
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+            <p className="text-xs text-gray-400 mt-4 text-center">
+              Sources: World Bank, National Statistics Bureaus, ILO 2024
+            </p>
+          </div>
+        </RevealSection>
+
+        {/* Market Cards */}
+        <RevealSection>
+          <h3 className="text-2xl font-bold text-[#0A1F1A] mb-8">
+            Market-by-Market Opportunity
+          </h3>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                country: "Lebanon",
+                flag: "L🇧",
+                highlight: false,
+                pros: "92% internet, educated and eager population",
+                cons: "Smaller absolute market size",
+                laborForce: "1.9M",
+                opportunity: "Medium",
+              },
+              {
+                country: "Qatar",
+                flag: "🇶🇦",
+                highlight: true,
+                pros: "99% internet, compact geography, high income, government digital push, young population",
+                cons: "Smaller absolute market size",
+                laborForce: "2.1M",
+                opportunity: "High",
+              },
+              {
+                country: "UAE",
+                flag: "🇦🇪",
+                highlight: true,
+                pros: "Tech-savvy, high income, established digital payment infrastructure",
+                cons: "Competitive market, higher CAC",
+                laborForce: "5.8M",
+                opportunity: "High",
+              },
+              {
+                country: "Saudi Arabia",
+                flag: "🇸🇦",
+                highlight: true,
+                pros: "Largest GCC market, Vision 2030 digital push, young population",
+                cons: "Geographically dispersed, cultural considerations",
+                laborForce: "16.5M",
+                opportunity: "Very High",
+              },
+              {
+                country: "Kuwait",
+                flag: "🇰🇼",
+                highlight: false,
+                pros: "High income, strong expat workforce, good infrastructure",
+                cons: "Smaller market, regulatory complexity",
+                laborForce: "2.4M",
+                opportunity: "Medium",
+              },
+              {
+                country: "Bahrain",
+                flag: "🇧🇭",
+                highlight: false,
+                pros: "Business-friendly, gateway to GCC, high digital adoption",
+                cons: "Smallest GCC market",
+                laborForce: "0.9M",
+                opportunity: "Medium",
+              },
+              {
+                country: "Oman",
+                flag: "🇴🇲",
+                highlight: false,
+                pros: "Growing digital infrastructure, less competition",
+                cons: "Lower income levels, smaller digital market",
+                laborForce: "2.5M",
+                opportunity: "Medium",
+              },
+              {
+                country: "Egypt",
+                flag: "🇪🇬",
+                highlight: true,
+                pros: "Massive labor force, large addressable market, low competition",
+                cons: "Lower income, infrastructure challenges, payment complexity",
+                laborForce: "31.0M",
+                opportunity: "Very High",
+              },
+              {
+                country: "Jordan",
+                flag: "🇯🇴",
+                highlight: false,
+                pros: "Tech talent hub, young population, regional stability",
+                cons: "Smaller market, economic pressures",
+                laborForce: "2.5M",
+                opportunity: "Medium",
+              },
+            ].map((market) => (
+              <Card
+                key={market.country}
+                className={`card-hover h-full ${market.highlight ? "ring-2 ring-[#EF9F27]" : ""}`}
+              >
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-2xl">{market.flag}</span>
+                    <h4 className="font-bold text-[#0A1F1A]">
+                      {market.country}
+                    </h4>
+                    {market.highlight && (
+                      <Badge className="bg-[#EF9F27] text-white text-xs ml-auto">
+                        Launch Ready
+                      </Badge>
+                    )}
+                  </div>
+                  <div className="grid grid-cols-2 gap-2 mb-3">
+                    <div className="bg-[#F8F7F5] rounded-lg p-2 text-center">
+                      <div className="text-lg font-bold text-[#0F6E56]">
+                        {market.laborForce}
+                      </div>
+                      <div className="text-xs text-gray-500">Labor Force</div>
+                    </div>
+                    <div className="bg-[#F8F7F5] rounded-lg p-2 text-center">
+                      <div className="text-lg font-bold text-[#EF9F27]">
+                        {market.opportunity}
+                      </div>
+                      <div className="text-xs text-gray-500">Opportunity</div>
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <div>
+                      <p className="text-xs text-[#0F6E56] font-semibold">
+                        Strengths
+                      </p>
+                      <p className="text-xs text-gray-600">{market.pros}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-red-500 font-semibold">
+                        Considerations
+                      </p>
+                      <p className="text-xs text-gray-600">{market.cons}</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </RevealSection>
+      </div>
+    </section>
+  );
+}
+
 /* ──────────── Technology ──────────── */
 function Technology() {
   const stack = [
@@ -1002,7 +1387,7 @@ function Team() {
                       Co-Founder & Marketing Lead
                     </h3>
                     <p className="text-[#EF9F27] font-medium text-sm mb-3">
-                      Certified Social Media Marketer (LAU)
+                      Certified Social Media Marketer
                     </p>
                     <p className="text-gray-600 leading-relaxed">
                       Experience managing 9-branch international marketing
@@ -1032,8 +1417,8 @@ function Team() {
                   {[
                     "Dedicated development team (Flutter, React, .NET)",
                     "Cloud infrastructure (AWS/Azure)",
-                    "Marketing budget ($50K over 18 months)",
-                    "Marketing autonomy with our proven expertise",
+                    "Marketing budget for launch and for growth campaigns",
+                    "Deep marketing involvement, led by proven expertise",
                   ].map((item, i) => (
                     <div key={i} className="flex items-center gap-3 text-white">
                       <CheckCircle2 className="w-5 h-5 text-[#EF9F27] flex-shrink-0" />
@@ -1115,7 +1500,9 @@ function Footer() {
         <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
             <img src="/warsha_logo.png" alt="Warsha" className="h-10 w-10" />
-            <span className="text-white font-bold text-xl">WARSHA</span>
+            <span className="text-white font-bold text-xl">
+              WARSHA<span className="text-[#EF9F27]">PRO</span>
+            </span>
             <span className="text-white/30">|</span>
             <span className="text-white/50 text-sm">وَرشَة</span>
           </div>
@@ -1139,6 +1526,7 @@ function App() {
       <MarketOpportunity />
       <Product />
       <BusinessModel />
+      <MarketAnalysis />
       <Technology />
       <Roadmap />
       <Team />
