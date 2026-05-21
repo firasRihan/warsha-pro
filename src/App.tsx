@@ -1048,11 +1048,6 @@ function MarketAnalysis() {
                     <h4 className="font-bold text-[#0A1F1A]">
                       {market.country}
                     </h4>
-                    {market.highlight && (
-                      <Badge className="bg-[#EF9F27] text-white text-xs ml-auto">
-                        Launch Ready
-                      </Badge>
-                    )}
                   </div>
                   <div className="grid grid-cols-2 gap-2 mb-3">
                     <div className="bg-[#F8F7F5] rounded-lg p-2 text-center">
