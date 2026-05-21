@@ -736,21 +736,21 @@ const marketData = [
   },
   {
     country: "UAE",
-    laborForce: 5.8,
+    laborForce: 7.4,
     internetPenetration: 99,
     avgIncome: 72000,
     opportunity: "High",
   },
   {
     country: "Saudi",
-    laborForce: 16.5,
+    laborForce: 17.8,
     internetPenetration: 96,
     avgIncome: 32000,
     opportunity: "Very High",
   },
   {
     country: "Kuwait",
-    laborForce: 2.4,
+    laborForce: 3.7,
     internetPenetration: 99,
     avgIncome: 52000,
     opportunity: "Medium",
@@ -764,21 +764,21 @@ const marketData = [
   },
   {
     country: "Oman",
-    laborForce: 2.5,
+    laborForce: 2.8,
     internetPenetration: 95,
     avgIncome: 22000,
     opportunity: "Medium",
   },
   {
     country: "Egypt",
-    laborForce: 31.0,
+    laborForce: 36.0,
     internetPenetration: 75,
     avgIncome: 4500,
     opportunity: "Very High",
   },
   {
     country: "Jordan",
-    laborForce: 2.5,
+    laborForce: 3.2,
     internetPenetration: 80,
     avgIncome: 6000,
     opportunity: "Medium",
@@ -980,7 +980,7 @@ function MarketAnalysis() {
                 highlight: true,
                 pros: "Tech-savvy, high income, established digital payment infrastructure",
                 cons: "Competitive market, higher CAC",
-                laborForce: "5.8M",
+                laborForce: "7.4M",
                 opportunity: "High",
               },
               {
@@ -989,7 +989,7 @@ function MarketAnalysis() {
                 highlight: true,
                 pros: "Largest GCC market, Vision 2030 digital push, young population",
                 cons: "Geographically dispersed, cultural considerations",
-                laborForce: "16.5M",
+                laborForce: "17.8M",
                 opportunity: "Very High",
               },
               {
@@ -998,7 +998,7 @@ function MarketAnalysis() {
                 highlight: false,
                 pros: "High income, strong expat workforce, good infrastructure",
                 cons: "Smaller market, regulatory complexity",
-                laborForce: "2.4M",
+                laborForce: "3.7M",
                 opportunity: "Medium",
               },
               {
@@ -1016,7 +1016,7 @@ function MarketAnalysis() {
                 highlight: false,
                 pros: "Growing digital infrastructure, less competition",
                 cons: "Lower income levels, smaller digital market",
-                laborForce: "2.5M",
+                laborForce: "2.8M",
                 opportunity: "Medium",
               },
               {
@@ -1025,7 +1025,7 @@ function MarketAnalysis() {
                 highlight: true,
                 pros: "Massive labor force, large addressable market, low competition",
                 cons: "Lower income, infrastructure challenges, payment complexity",
-                laborForce: "31.0M",
+                laborForce: "36.0M",
                 opportunity: "Very High",
               },
               {
@@ -1034,7 +1034,7 @@ function MarketAnalysis() {
                 highlight: false,
                 pros: "Tech talent hub, young population, regional stability",
                 cons: "Smaller market, economic pressures",
-                laborForce: "2.5M",
+                laborForce: "3.2M",
                 opportunity: "Medium",
               },
             ].map((market) => (
@@ -1097,7 +1097,7 @@ function Technology() {
     },
     {
       layer: "Backend",
-      items: ".NET 10 microservices, API Gateway, JWT Auth",
+      items: ".NET 10, API Gateway, JWT Auth",
       icon: Code2,
     },
     {
